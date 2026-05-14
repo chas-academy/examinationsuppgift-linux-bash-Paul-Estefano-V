@@ -46,8 +46,12 @@ for username in "$@"
 do
     echo "Creating $username"
     useradd -m "$username"
+done
 
+for username in "$@"
+do
     create_folders "$username"
     set_permissions "$username"
     create_welcome "$username"
+    chown -R $username:$username /home/$username
 done
